@@ -1,7 +1,7 @@
 ## CUSTOM VIEWS
 #### Dev env:
-Example of VIEW_CODE in dev env: **32KUL_KUL-KUL** (this is also the foldername)
-Run command: gulp run --view **32KUL_KUL-KUL** --ve
+Example of VIEW_CODE in dev env: **32KUL_KUL-KUL** (this is also the foldername)\
+Run command: gulp run --view **32KUL_KUL-KUL** --ve\
 Create package command: gulp create-package --ve
 
 Using **32KUL_KUL-KUL** instead of **KUL** makes sure that name of the package zip and folder are correct.
@@ -12,8 +12,8 @@ Upload zip to Alma configuration of **Institution (KUL or LIBISnet)** -> Discove
 
 ## CENTRAL PACKAGE
 #### Dev env:
-Name of folder = **32KUL_LIBIS_NETWORK-CENTRAL_PACKAGE**
-Run command: gulp run --view **32KUL_LIBIS_NETWORK-CENTRAL_PACKAGE** --ve --browserify
+Name of folder = **32KUL_LIBIS_NETWORK-CENTRAL_PACKAGE**\
+Run command: gulp run --view **32KUL_LIBIS_NETWORK-CENTRAL_PACKAGE** --ve --browserify\
 Create package command: gulp create-package --ve --browserify
 
 #### Deploy:
