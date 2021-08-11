@@ -9,6 +9,8 @@ Using **32KUL_KUL-KUL** instead of **KUL** makes sure that name of the package z
 #### Deploy:
 Upload zip to Alma configuration of **Institution (KUL or LIBISnet)** -> Discovery -> Manage customization package
 
+## CUSTOM VIEWS with multiple components
+Run command: gulp run --view 32KUL_KUL-REGIONAL --ve --browserify
 
 ## CENTRAL PACKAGE
 #### Dev env:
