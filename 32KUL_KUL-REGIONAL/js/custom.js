@@ -22,7 +22,9 @@ require('./utils');
 
 var _regViewOtherMembers = require('./components/prmAlmaOtherMembersAfter/regViewOtherMembers');
 
-var _regViewAvailabilityLineConfig = require('./components/prmSearchResultAvailabilityLineAfter/regViewAvailabilityLineConfig');
+var _regViewAvailabilityLine = require('./components/prmSearchResultAvailabilityLineAfter/regViewAvailabilityLine');
+
+var _fullViewSectionOrdering = require('./components/prmFullViewAfter/fullViewSectionOrdering');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -50,7 +52,7 @@ var AfterComponents = function () {
       {name: 'libis-experiment', config: experimentConfig, enabled: false, appendTo: 'prm-messages-and-blocks-overview-after', enableInView: '.*'},
       {name: 'libis-remove-user-area', config: removeUserAreaConfig, enabled: false, appendTo: 'prm-user-area-expandable-after', enableInView: '.*'},      
       */
-      { name: 'libis-only-members', config: _regViewOtherMembers.regViewOtherMembersConfig, enabled: true, appendTo: 'prm-alma-other-members-after', enableInView: '.*' }, { name: 'libis-availability-line', config: _regViewAvailabilityLineConfig.regViewAvailabilityLineConfig, enabled: true, appendTo: 'prm-search-result-availability-line-after', enableInView: '.*' }].filter(function (component) {
+      { name: 'libis-only-members', config: _regViewOtherMembers.regViewOtherMembersConfig, enabled: true, appendTo: 'prm-alma-other-members-after', enableInView: '.*' }, { name: 'libis-availability-line', config: _regViewAvailabilityLine.regViewAvailabilityLineConfig, enabled: true, appendTo: 'prm-search-result-availability-line-after', enableInView: '.*' }, { name: 'libis-full-view-section-ordering', config: _fullViewSectionOrdering.fullViewSectionOrderingConfig, enabled: true, appendTo: 'prm-full-view-after', enableInView: '.*' }].filter(function (component) {
         return component.enabled && new RegExp(component.enableInView).test(window.appConfig.vid);
       });
     }
@@ -61,7 +63,7 @@ var AfterComponents = function () {
 
 exports.default = AfterComponents;
 
-},{"./components/prmAlmaOtherMembersAfter/regViewOtherMembers":2,"./components/prmSearchResultAvailabilityLineAfter/regViewAvailabilityLineConfig":3,"./utils":15}],2:[function(require,module,exports){
+},{"./components/prmAlmaOtherMembersAfter/regViewOtherMembers":2,"./components/prmFullViewAfter/fullViewSectionOrdering":3,"./components/prmSearchResultAvailabilityLineAfter/regViewAvailabilityLine":4,"./utils":16}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -188,6 +190,93 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var fullViewSectionOrderingController = function () {
+    function fullViewSectionOrderingController($scope) {
+        _classCallCheck(this, fullViewSectionOrderingController);
+
+        this.$scope = $scope;
+        this.sectionOrderNameList = ["howovp", "ovp", "links", "details", "howovp", "ovp", "citationTrails", "virtualBrowse", "action_list"];
+    }
+
+    _createClass(fullViewSectionOrderingController, [{
+        key: "$onInit",
+        value: function $onInit() {
+            this.sectionOrderNameList.unshift("brief");
+            try {
+                this.$scope.$watch('this.$ctrl.parentCtrl.parentCtrl.services', function (newValue, oldValue, scope) {
+                    if (newValue) {
+                        /* Only thake the available services from sectionOrderNameList */
+                        /* select the services that are not listed in sectionOrderNameList from the available services */
+                        /* append them to sectionOrderNameList (they will be displayes at the bottom) */
+                        var sectionsServiceNameList = scope.$ctrl.parentCtrl.parentCtrl.services.map(function (s) {
+                            return s.serviceName;
+                        });
+                        var sectionsServiceIncludedNameList = sectionsServiceNameList.filter(function (section) {
+                            return scope.$ctrl.sectionOrderNameList.includes(section);
+                        });
+                        var sectionsServiceExcludedNameList = sectionsServiceNameList.filter(function (section) {
+                            return !scope.$ctrl.sectionOrderNameList.includes(section);
+                        });
+                        var sectionOrderNameList = scope.$ctrl.sectionOrderNameList.filter(function (section) {
+                            return sectionsServiceIncludedNameList.includes(section);
+                        });
+                        sectionOrderNameList = sectionOrderNameList.concat(sectionsServiceExcludedNameList);
+
+                        if (newValue && JSON.stringify(sectionsServiceNameList) !== JSON.stringify(sectionOrderNameList)) {
+                            scope.$ctrl.orderingSections(scope.$ctrl.parentCtrl.parentCtrl.services, sectionOrderNameList);
+                        }
+                    }
+                }, true);
+            } catch (e) {
+                console.error("fullViewSectionOrderingController constructor");
+                console.error(e.message);
+            }
+        }
+    }, {
+        key: "orderingSections",
+        value: function orderingSections(sections, sectionOrderNameList) {
+            try {
+                // brief is always the first section
+                var OrderedSections = sections;
+                OrderedSections = OrderedSections.map(function (s) {
+                    s.order = sectionOrderNameList.indexOf(s.serviceName);return s;
+                });
+                OrderedSections = OrderedSections.sort(function (a, b) {
+                    return a.order - b.order;
+                });
+                OrderedSections.forEach(function (section, index) {
+                    //    this.parentCtrl.parentCtrl.services[index] = section
+                    sections[index] = section;
+                });
+            } catch (e) {
+                console.error("fullViewSectionOrderingController orderingSections");
+                console.error(e);
+            }
+        }
+    }]);
+
+    return fullViewSectionOrderingController;
+}();
+
+fullViewSectionOrderingController.$inject = ['$scope'];
+
+var fullViewSectionOrderingConfig = exports.fullViewSectionOrderingConfig = {
+    bindings: { parentCtrl: '<' },
+    controller: fullViewSectionOrderingController,
+    template: ''
+};
+
+},{}],4:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var regViewAvailabilityLineController = function regViewAvailabilityLineController($scope, $element, $translate) {
@@ -258,7 +347,7 @@ var regViewAvailabilityLineConfig = exports.regViewAvailabilityLineConfig = {
     template: ''
 };
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var _primo = require('./primo-explore-dom/js/primo');
@@ -375,7 +464,7 @@ Object.keys(afterComponents).forEach(function (component, i) {
   });
 });
 
-},{"./components":1,"./primo-explore-dom/js/primo":5,"./primo-explore-dom/js/primo/explore/helper":8,"./templates":14}],5:[function(require,module,exports){
+},{"./components":1,"./primo-explore-dom/js/primo":6,"./primo-explore-dom/js/primo/explore/helper":9,"./templates":15}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -536,7 +625,7 @@ var Primo = function () {
 
 exports.default = Primo;
 
-},{"./primo/explore":6,"./primo/explore/helper":8,"./primo/facets":9,"./primo/records":10,"./primo/user":11,"./primo/view":12}],6:[function(require,module,exports){
+},{"./primo/explore":7,"./primo/explore/helper":9,"./primo/facets":10,"./primo/records":11,"./primo/user":12,"./primo/view":13}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -593,7 +682,7 @@ var Explore = function () {
 
 exports.default = Explore;
 
-},{"./explore/components":7,"./explore/helper":8}],7:[function(require,module,exports){
+},{"./explore/components":8,"./explore/helper":9}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -713,7 +802,7 @@ var Components = function () {
 
 exports.default = Components;
 
-},{"../../vendor/css-selector-generator.js":13,"./helper":8}],8:[function(require,module,exports){
+},{"../../vendor/css-selector-generator.js":14,"./helper":9}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -990,7 +1079,7 @@ var Helper = function () {
 
 exports.default = Helper;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1047,7 +1136,7 @@ var Facets = function () {
 
 exports.default = Facets;
 
-},{"./explore/components":7,"./explore/helper":8}],10:[function(require,module,exports){
+},{"./explore/components":8,"./explore/helper":9}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1107,7 +1196,7 @@ var Records = function () {
 
 exports.default = Records;
 
-},{"./explore/components":7,"./explore/helper":8}],11:[function(require,module,exports){
+},{"./explore/components":8,"./explore/helper":9}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1166,7 +1255,7 @@ var User = function () {
 
 exports.default = User;
 
-},{"./explore/helper":8}],12:[function(require,module,exports){
+},{"./explore/helper":9}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1202,7 +1291,7 @@ var View = function View() {
 
 exports.default = View;
 
-},{"./explore/helper":8}],13:[function(require,module,exports){
+},{"./explore/helper":9}],14:[function(require,module,exports){
 'use strict';
 
 (function () {
@@ -1518,7 +1607,7 @@ exports.default = View;
   }
 }).call(undefined);
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1576,7 +1665,7 @@ var Templates = function () {
 
 exports.default = Templates;
 
-},{"./utils":15}],15:[function(require,module,exports){
+},{"./utils":16}],16:[function(require,module,exports){
 'use strict';
 
 /*
@@ -1678,6 +1767,6 @@ angular.element.prototype.closestNode = function (nodeName) {
 };
 */
 
-},{}]},{},[4])
+},{}]},{},[5])
 
 //# sourceMappingURL=custom.js.map

@@ -10,7 +10,7 @@
       self.$scope = $scope;
       self.$element = $element;
       self.$translate = $translate;
-      self.$ctrl =self.parentCtrl.parentCtrl ;
+      self.$ctrl = self.parentCtrl.parentCtrl ;
       self.viewInst = window.appConfig["primo-view"].institution.description;
 
       /*

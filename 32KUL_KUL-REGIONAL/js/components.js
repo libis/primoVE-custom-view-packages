@@ -10,8 +10,8 @@
 import './utils';
 /* import your component configuration*/
 import {regViewOtherMembersConfig} from './components/prmAlmaOtherMembersAfter/regViewOtherMembers'
-import {regViewAvailabilityLineConfig} from './components/prmSearchResultAvailabilityLineAfter/regViewAvailabilityLineConfig'
-
+import {regViewAvailabilityLineConfig} from './components/prmSearchResultAvailabilityLineAfter/regViewAvailabilityLine'
+import {fullViewSectionOrderingConfig} from './components/prmFullViewAfter/fullViewSectionOrdering'
 
 export default class AfterComponents {
 
@@ -35,6 +35,7 @@ export default class AfterComponents {
       */
       {name: 'libis-only-members', config: regViewOtherMembersConfig, enabled: true, appendTo: 'prm-alma-other-members-after', enableInView: '.*'},
       {name: 'libis-availability-line', config: regViewAvailabilityLineConfig, enabled: true, appendTo: 'prm-search-result-availability-line-after', enableInView: '.*'},
+      {name: 'libis-full-view-section-ordering', config: fullViewSectionOrderingConfig, enabled: true, appendTo: 'prm-full-view-after', enableInView: '.*'},
 
     ].filter( (component) => ( component.enabled && new RegExp(component.enableInView).test(window.appConfig.vid) ) );
   }
