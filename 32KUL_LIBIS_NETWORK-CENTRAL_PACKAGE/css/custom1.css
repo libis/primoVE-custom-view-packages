@@ -506,6 +506,198 @@ prm-main-menu div#mainMenu a[aria-label='Réactions']
  display:none;
 }
 
+.full-view-inner-container{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+}
+
+/*citations*/
+button[aria-label='Citaties'],
+button[aria-label='Citations'],
+button[orderIndex='5']{
+  order: 0;
+}
+
+#citationTrails{
+  -webkit-box-ordinal-group: 0;
+  -moz-box-ordinal-group: 0;
+  -ms-flex-order: 0;
+  -webkit-order: 0;
+  order: 0;
+}
+
+/*view online*/
+button[aria-label='Bekijk online'],
+button[aria-label='View Online'],
+button[aria-label='Consulter'],
+button[orderIndex='2']{
+  order: 1;
+}
+
+/*view online*/
+#getit_link1_0{
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -ms-flex-order: 1;
+  -webkit-order: 1;
+  order: 1;
+}
+
+
+/*links*/
+button[aria-label='Links'],
+button[aria-label='Liens'],
+button[orderIndex='4']{
+  order: 1;
+}
+
+#links{
+  -webkit-box-ordinal-group: 1;
+  -moz-box-ordinal-group: 1;
+  -ms-flex-order: 1;
+  -webkit-order: 1;
+  order: 1;
+}
+
+
+/*Where to find it?*/
+button[aria-label='Where to find it ?'],
+button[aria-label='Vindplaats'],
+button[aria-label='Location'],
+button[orderIndex='4']{
+  order: 2;
+}
+
+/*Where to find it?*/
+#getit_link1_1{
+  -webkit-box-ordinal-group: 2;
+  -moz-box-ordinal-group: 2;
+  -ms-flex-order: 2;
+  -webkit-order: 2;
+  order: 2;
+}
+
+
+/*LocationsLinks*/
+button[aria-label='LocationsLinks'],
+button[aria-label='LocationsLinks'],
+button[aria-label='LocationsLinks'],
+button[orderIndex='2']{
+  order: 2;
+}
+
+/*LocationsLinks*/
+#locationsLinks{
+  -webkit-box-ordinal-group: 2;
+  -moz-box-ordinal-group: 2;
+  -ms-flex-order: 2;
+  -webkit-order: 2;
+  order: 2;
+}
+
+
+/*send to*/
+button[aria-label='Export'],
+button[aria-label='Send to'],
+button[aria-label='Envoyer à'],
+button[orderIndex='1']{
+  order: 3;
+}
+
+/*Send to*/
+#action_list{
+  -webkit-box-ordinal-group: 3;
+  -moz-box-ordinal-group: 3;
+  -ms-flex-order: 3;
+  -webkit-order: 3;
+  order: 3;
+}
+
+
+/*details*/
+button[aria-label='Details'],
+button[aria-label='Détails'],
+button[orderIndex='3']{
+  order: 4;
+}
+
+#details{
+  -webkit-box-ordinal-group: 4;
+  -moz-box-ordinal-group: 4;
+  -ms-flex-order: 4;
+  -webkit-order: 4;
+  order: 4;
+}
+
+/* Collection */
+button[aria-label='Collection'],
+button[aria-label='Collectie']{
+  order: 5;
+}
+
+#moreFromTheSameCollection{
+  -webkit-box-ordinal-group: 5;
+  -moz-box-ordinal-group: 5;
+  -ms-flex-order: 5;
+  -webkit-order: 5;
+  order: 5;
+
+}
+
+/*tags*/
+button[aria-label='Tags'],
+button[orderIndex='6']{
+  order: 6;
+}
+#tags{
+  -webkit-box-ordinal-group: 6;
+  -moz-box-ordinal-group: 6;
+  -ms-flex-order: 6;
+  -webkit-order: 6;
+  order: 6;
+}
+
+/* Check Locations */
+button[aria-label='Check locaties'],
+button[aria-label='Check Locations'],
+button[orderIndex='7']{
+  order: 7;
+}
+
+/* Check Locations */
+#getit_link2{
+  -webkit-box-ordinal-group: 7;
+  -moz-box-ordinal-group: 7;
+  -ms-flex-order: 7;
+  -webkit-order: 7;
+  order: 7;
+}
+
+#services-index {
+  display:flex;
+  flex-direction: column;
+}
+
+#altmetrics{
+  -webkit-box-ordinal-group: 10;
+  -moz-box-ordinal-group: 10;
+  -ms-flex-order: 10;
+  -webkit-order: 10;
+  order: 10;
+}
+
+button[aria-label="Altmetrics"],
+button[aria-label="altmetrics"],
+button[orderIndex='10']{
+  order: 10;
+}
+
+
+
 prm-requests .unpin-button{
     display: none;
 }

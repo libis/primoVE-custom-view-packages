@@ -30,10 +30,10 @@ class SearchTipController {
 
       let tipsHTML = tip_enUS_HTML;
       switch (locale) {
-        case 'fr_FR':
+        case 'fr':
           tipsHTML = tip_frFR_HTML;
           break;
-        case 'nl_BE':
+        case 'nl':
           tipsHTML = tip_nlBE_HTML;
           break;
         default:

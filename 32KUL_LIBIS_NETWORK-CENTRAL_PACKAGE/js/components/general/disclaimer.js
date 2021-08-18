@@ -15,15 +15,15 @@ class disclaimerController {
       let vid = view.code;
 
       let locale_text = {
-        'nl_BE': {
+        'nl': {
           'title': 'Cookiebeleid',
           'title_label': "Cookiebeleid"
         },
-        'en_US': {
+        'en': {
           'title': 'Cookie Policy',
           'title_label': "Cookie Policy"
         },
-        'fr_FR': {
+        'fr': {
           'title': 'Cookie Policy',
           'title_label': "Cookie Policy"
         },
@@ -33,10 +33,10 @@ class disclaimerController {
 //    let disclaimerDialog = disclaimerDialogHTML; 
       let disclaimerDialog = cookiePolicyDialogHTML;
       switch (locale) {
-        case 'fr_FR':
+        case 'fr':
         disclaimerDialog = disclaimerDialog_frFR_HTML;
           break;
-        case 'nl_BE':
+        case 'nl':
         disclaimerDialog = disclaimerDialog_nlBE_HTML;
           break;
         default:

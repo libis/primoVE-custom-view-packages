@@ -45,6 +45,10 @@ exports.tmpdir = exports.tmpDir = function () {
 
 exports.EOL = '\n';
 
+exports.homedir = function () {
+	return '/'
+};
+
 },{}],2:[function(require,module,exports){
 'use strict';
 
@@ -434,15 +438,15 @@ var disclaimerController = function disclaimerController($scope, $http, $mdDialo
     var vid = view.code;
 
     var locale_text = {
-      'nl_BE': {
+      'nl': {
         'title': 'Cookiebeleid',
         'title_label': "Cookiebeleid"
       },
-      'en_US': {
+      'en': {
         'title': 'Cookie Policy',
         'title_label': "Cookie Policy"
       },
-      'fr_FR': {
+      'fr': {
         'title': 'Cookie Policy',
         'title_label': "Cookie Policy"
       }
@@ -451,10 +455,10 @@ var disclaimerController = function disclaimerController($scope, $http, $mdDialo
       //    let disclaimerDialog = disclaimerDialogHTML; 
     };var disclaimerDialog = cookiePolicyDialogHTML;
     switch (locale) {
-      case 'fr_FR':
+      case 'fr':
         disclaimerDialog = disclaimerDialog_frFR_HTML;
         break;
-      case 'nl_BE':
+      case 'nl':
         disclaimerDialog = disclaimerDialog_nlBE_HTML;
         break;
       default:
@@ -709,10 +713,10 @@ var SearchTipController = function SearchTipController($scope, $http, $mdDialog)
 
     var tipsHTML = tip_enUS_HTML;
     switch (locale) {
-      case 'fr_FR':
+      case 'fr':
         tipsHTML = tip_frFR_HTML;
         break;
-      case 'nl_BE':
+      case 'nl':
         tipsHTML = tip_nlBE_HTML;
         break;
       default:
@@ -3982,13 +3986,14 @@ var app = angular.module('centralCustom', ['ngMaterial', 'vcRecaptcha', 'googleA
 
     if (window.appConfig.vid.includes('KULeuven')) {
       var locale = window.appConfig['primo-view']['attributes-map'].interfaceLanguage;
+
       var locale_text = {
-        'nl_BE': {
+        'nl': {
           'journal': "Bekijk de inhoud van het tijdschrift",
           'issue': "Bekijk de inhoud van het nummer",
           'download': "Download PDF"
         },
-        'en_US': {
+        'en': {
           'journal': "View Journal Contents",
           'issue': "View Issue Contents",
           'download': "Download PDF"
@@ -5396,6 +5401,5 @@ angular.element.prototype.closestNode = function (nodeName) {
 */
 
 },{}]},{},[54])
-
 
 //# sourceMappingURL=custom.js.map
