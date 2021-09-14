@@ -32,7 +32,7 @@ app.component('prmSearchResultAvailabilityLineAfter', {
 /* https://otago.hosted.exlibrisgroup.com/primo-explore/search?vid=DUNEDIN&sortby=rank&search_scope=All */
 
 /* document.title => See Code Table Header/Footer Tiles */
-document.querySelectorAll("link[rel='icon']")[0].setAttribute("href", "/primo-explore/custom/ECB/img/favicon.png");
+document.querySelectorAll("link[rel='icon']")[0].setAttribute("href", "/discovery/custom/49ECB_INST-ECB/img/favicon.png");
 
 /* TODO : get this on Central Package level */
 
@@ -41,7 +41,7 @@ app.component('prmLinkedUserSelectorAfter', {
         parentCtrl: '<'
     },
     controller: 'prmLinkedUserSelectorAfter',
-    templateUrl: 'custom/ECB/html/prmLinkedUserSelectorAfter.html'
+    templateUrl: '/discovery/custom/49ECB_INST-ECB/html/prmLinkedUserSelectorAfter.html'
 });
 
 app.controller('prmLinkedUserSelectorAfter', ['$element', '$scope', '$location', '$templateCache', function ($element, $scope, $location, $templateCach) {
@@ -60,7 +60,7 @@ app.component('prmUserAreaAfter', {
         parentCtrl: '<'
     },
     controller: 'prmUserAreaAfterController',
-    templateUrl: 'custom/ECB/html/user-area.html'
+    templateUrl: '/discovery/custom/49ECB_INST-ECB/html/user-area.html'
 });
 
 app.controller('prmUserAreaAfterController', ['$element', '$scope', '$location', '$templateCache', function ($element, $scope, $location, $templateCache) {
