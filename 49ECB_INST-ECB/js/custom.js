@@ -29,6 +29,48 @@ app.component('prmSearchResultAvailabilityLineAfter', {
     bindings: { parentCtrl: '<' },
     controller: 'prmSearchResultAvailabilityLineAfterController'
 });
+
+app.component('prmServiceDetailsAfter', {
+    bindings: {
+        parentCtrl: '<'
+    },
+    controller: 'prmServiceDetailsAfter',
+    templateUrl: ''
+});
+
+app.controller('prmServiceDetailsAfter', ['$scope', '$compile', function ($scope, $compile) {
+    self = this;
+    this.$scope = $scope;
+    this.$compile = $compile;
+
+    self.removeDescriptionIfDb = function () {
+
+        if (self.parentCtrl.item.pnx.display.type.includes("database")) {
+
+            for (var d in self.parentCtrl.details) {
+                if (self.parentCtrl.details[d].label === "description") {
+                    self.parentCtrl.details[d].values[0].values = '';
+                }
+            }
+        }
+    };
+
+    self.waitForPNX = function () {
+        var _this = this;
+
+        var unbindWatcher = self.$scope.$watch(function () {
+            return self.parentCtrl.details;
+        }, function (newVal, oldVal) {
+            if (newVal) {
+                unbindWatcher();
+                _this.removeDescriptionIfDb();
+            }
+        });
+    };
+
+    self.waitForPNX();
+}]);
+
 /* https://otago.hosted.exlibrisgroup.com/primo-explore/search?vid=DUNEDIN&sortby=rank&search_scope=All */
 
 /* document.title => See Code Table Header/Footer Tiles */
