@@ -15,7 +15,7 @@ Run command: gulp run --view 32KUL_KUL-REGIONAL --ve --browserify
 ## CENTRAL PACKAGE
 #### Dev env:
 Name of folder = **32KUL_LIBIS_NETWORK-CENTRAL_PACKAGE**\
-Run command: gulp run --view **32KUL_LIBIS_NETWORK-CENTRAL_PACKAGE** --ve --browserify\
+Run command: gulp run --view **32KUL_LIBIS_NETWORK-CENTRAL_PACKAGE** --ve --browserify \
 Create package command: gulp create-package --ve --browserify
 
 #### Deploy:
