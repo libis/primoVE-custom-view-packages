@@ -64,6 +64,7 @@ import {locationsForBibliographicViewConfig} from './components/prmFullViewAfter
 import {briefLocationsForBibliographicViewConfig} from './components/prmBriefResultAfter/briefLocationsForBibliographicView'
 import {URLDecodeLinkLabelControllerConfig} from './components/prmFullViewServiceContainerAfter/URLDecodeLinkLabel'
 
+import {externalLinksInDetailsConfig} from './components/prmServiceDetailsAfter/externalLinksInDetails'
 
 export default class AfterComponents {
 
@@ -146,8 +147,8 @@ export default class AfterComponents {
      {name: 'filter-facet-values', config: filterFacetValuesConfig, enabled: false, appendTo: 'prm-facet-after', enableInView: '^JESUITS'},
 
      {name: 'search-collections', config: searchCollectionsConfig, enabled: true, appendTo: 'prm-collection-gallery-header-after', enableInView: '^KULeuven'},
-     {name: 'url-decode-link-label', config: URLDecodeLinkLabelControllerConfig, enabled: true, appendTo: 'prm-service-links-after', enableInView: '^KADOC'}
-
+     {name: 'url-decode-link-label', config: URLDecodeLinkLabelControllerConfig, enabled: true, appendTo: 'prm-service-links-after', enableInView: '^KADOC'},
+     {name: 'external-links-in-details', config: externalLinksInDetailsConfig, enabled: true, appendTo: 'prm-service-details-after', enableInView: '^Lirias'}      
 
 
     ].filter( (component) => ( component.enabled && new RegExp(component.enableInView).test(window.appConfig.vid) ) );
