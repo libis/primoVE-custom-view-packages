@@ -33,7 +33,7 @@ export default class MessageService {
     }
 
     self.translate(messageKey).then((m) => {
-      message = (m == messageKey || m <= 1) ? '' : m;
+      message = (/generalMessage$/.test(m) || m <= 1) ? '' : m;
 
       self.__show({
         message: message,
